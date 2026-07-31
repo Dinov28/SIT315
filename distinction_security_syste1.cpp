@@ -15,7 +15,7 @@ enum SystemState {
 SystemState currentState = SAFE;
 SystemState previousState = SAFE;
 
-// Values shared with the D2 external interrupt.
+// Values shared with the D2 external interrupt
 volatile bool motionInterruptFlag = false;
 
 // Values shared with the D8/D9 pin-change interrupt.
@@ -93,16 +93,16 @@ void setup()
 
 void loop()
 {
-  //collect short interrupt notifications.
+  //SENSE
   handleMotionInterrupt();
   collectPinChangeEvents();
   applyDebouncedSensorStates();
   handleTimerEvent();
 
-  //calculate the required system state.
+  //Think
   thinkAboutState();
 
-  //update the alarm output when the state changes.
+  //act
   actOnState();
 }
 
@@ -157,7 +157,7 @@ void configureTimer1()
   interrupts();
 }
 
-// D2 external interrupt, record the event and return immediately.
+// D2 external interrupt, record the event and return immediately
 void motionISR()
 {
   motionInterruptFlag = true;
